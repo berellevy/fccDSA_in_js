@@ -88,16 +88,20 @@ class BST {
     const findAndRemoveNode = function (startingNode, data) {
       console.log("begin func", {startingNode, data})
       if (startingNode === null) {
+        console.log("startingNode === null");
         return null;
       }
       if (data === startingNode.data) {
         if (startingNode.left === null && startingNode.right === null) {
+          console.log("(startingNode.left === null && startingNode.right === null)")
           return null;
         }
         if (startingNode.left === null) {
+          console.log("startingNode.left === null");
           return startingNode.right;
         }
         if (startingNode.right === null) {
+          console.log("startingNode.right === null");
           return startingNode.right;
         }
         let tempNode = startingNode.right;
@@ -109,15 +113,17 @@ class BST {
           startingNode.right,
           tempNode.data
         );
+        console.log("return startingNode");
         return startingNode;
       } else if (data < startingNode.data) {
         startingNode.left = findAndRemoveNode(startingNode.left, data);
+        console.log("(data < startingNode.data)");
         return startingNode;
       } else {
         startingNode.right = findAndRemoveNode(startingNode.right, data);
+        console.log("(data > startingNode.data)");
         return startingNode;
       }
-      console.log("finishing func" {startingNode, data})
     };
     this.root = findAndRemoveNode(this.root, data);
   }
