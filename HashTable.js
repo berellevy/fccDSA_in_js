@@ -10,7 +10,7 @@ const hash = (string, max) => {
       charCode: string.charCodeAt(i),
       hash,
       max,
-      "%": hash % max
+      "%": hash % max,
     });
   }
   return hash % max;
@@ -26,6 +26,20 @@ let hashTable = function () {
 
   this.add = function (key, value) {
     let index = hash(key, storageLimit);
+    if (storage[index] === undefined) {
+      storage[index] = [[key, value]];
+    } else {
+      let inserted = false;
+      for (let i = 0; i < storage[index].length; i++) {
+        if (storage[index][i][0] === key) {
+          storage[index][i][1] = value;
+          inserted = true;
+        }
+      }
+      if (inserted === false) {
+        storage[index].push([key, value]);
+      }
+    }
   };
 };
 

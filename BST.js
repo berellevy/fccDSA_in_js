@@ -86,6 +86,7 @@ class BST {
   }
   remove(data) {
     const findAndRemoveNode = function (startingNode, data) {
+      console.log("begin func", {startingNode, data})
       if (startingNode === null) {
         return null;
       }
@@ -116,6 +117,7 @@ class BST {
         startingNode.right = findAndRemoveNode(startingNode.right, data);
         return startingNode;
       }
+      console.log("finishing func" {startingNode, data})
     };
     this.root = findAndRemoveNode(this.root, data);
   }
@@ -128,11 +130,6 @@ class BST {
     if (node === null) return -1;
     let left = this.findMinHeight(node.left);
     let right = this.findMinHeight(node.right);
-    // if (left < right) {
-    //   return left + 1;
-    // } else {
-    //   return right + 1;
-    // }
     return Math.min(left, right) + 1;
   }
 
@@ -140,11 +137,6 @@ class BST {
     if (node === null) return -1;
     let left = this.findMaxHeight(node.left);
     let right = this.findMaxHeight(node.right);
-    // if (left > right) {
-    //   return left + 1;
-    // } else {
-    //   return right + 1;
-    // }
     return Math.max(left, right) + 1;
   }
 
@@ -230,4 +222,4 @@ bst.add(7);
 bst.add(100);
 bst.add(75);
 bst.add(600);
-bst.levelOrder()
+bst.remove(7)
