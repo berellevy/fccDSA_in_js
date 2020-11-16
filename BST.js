@@ -1,3 +1,8 @@
+const nlog = (string) => {
+  console.log(string);
+  console.log();
+}
+
 class Node {
   constructor(data, left = null, right = null) {
     this.data = data;
@@ -86,26 +91,39 @@ class BST {
   }
   remove(data) {
     const findAndRemoveNode = function (startingNode, data) {
-      console.log("begin func", {startingNode, data})
+      nlog("BEGIN FUNCTION\n==============", {"startingNode Data": startingNode.data, data})
+      nlog("check: is startingNode null?");
       if (startingNode === null) {
-        console.log("startingNode === null");
+        nlog("yes! startingNode is null");
         return null;
+      } else {
+        nlog("no!");
       }
+      nlog("check: data === startingNode.data?");
       if (data === startingNode.data) {
+        nlog("yes!!! found a match!");
+        nlog("check: are both children null?");
         if (startingNode.left === null && startingNode.right === null) {
-          console.log("(startingNode.left === null && startingNode.right === null)")
+          nlog("yess!!")
           return null;
+        } else {
+          nlog('no!');
         }
+        nlog("check: is startingNode's left child empty?");
         if (startingNode.left === null) {
-          console.log("startingNode.left === null");
+          nlog("yes!!");
           return startingNode.right;
+        } else {
+          nlog("no!");
         }
         if (startingNode.right === null) {
-          console.log("startingNode.right === null");
+          nlog("startingNode.right === null");
           return startingNode.right;
         }
         let tempNode = startingNode.right;
+        nlog("assigned startingNode.right to tempNode var");
         while (tempNode.left !== null) {
+          nlog({tempNode, "tempNode.left": tempNode.left});
           tempNode = tempNode.left;
         }
         startingNode.data = tempNode.data;
@@ -113,15 +131,15 @@ class BST {
           startingNode.right,
           tempNode.data
         );
-        console.log("return startingNode");
+        nlog("return startingNode");
         return startingNode;
       } else if (data < startingNode.data) {
         startingNode.left = findAndRemoveNode(startingNode.left, data);
-        console.log("(data < startingNode.data)");
+        nlog("(data < startingNode.data)");
         return startingNode;
       } else {
         startingNode.right = findAndRemoveNode(startingNode.right, data);
-        console.log("(data > startingNode.data)");
+        nlog("(data > startingNode.data)");
         return startingNode;
       }
     };
@@ -196,7 +214,7 @@ class BST {
     let Q = [];
     if (this.root !== null) {
       Q.push(this.root);
-      console.log({Q, result});
+      nlog({Q, result});
       while (Q.length > 0) {
         let node = Q.shift();
         result.push(node.data);
@@ -206,7 +224,7 @@ class BST {
         if (node.right !== null) {
           Q.push(node.right);
         }
-        console.log({Q, result});
+        nlog({Q, result});
       }
       return result;
     } else {
@@ -216,7 +234,7 @@ class BST {
 }
 
 const bst = new BST();
-// console.log(bst.findMinHeight());
+// nlog(bst.findMinHeight());
 
 bst.add(4);
 bst.add(2);
@@ -228,4 +246,4 @@ bst.add(7);
 bst.add(100);
 bst.add(75);
 bst.add(600);
-bst.remove(7)
+bst.remove(4)
