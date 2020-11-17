@@ -41,6 +41,19 @@ let hashTable = function () {
       }
     }
   };
+
+  this.remove = function (key) {
+    let index = hash(key, storageLimit);
+    if (storage[index].length === 1 && storage[index][0][0] === key) {
+      delete storage[index];
+    } else {
+      for (let i = 0; i < storage[index].length; i++) {
+        if (storage[index][i][0] === key) {
+          delete storage[index][i]
+        }
+      }
+    }
+  };
 };
 
 console.log(hash("Berel is a poo", 4));
