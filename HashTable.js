@@ -10,7 +10,7 @@ const hash = (string, max) => {
 
 let hashTable = function () {
   let storage = [];
-  let storageLimit = 4;
+  let storageLimit = 400;
 
   this.print = function () {
     console.log(storage);
@@ -61,4 +61,12 @@ let hashTable = function () {
   };
 };
 
-console.log(hash("Berel is a poo", 10));
+let ht = new hashTable()
+ht.add("Beau", "person")
+ht.add("Berel", "person")
+ht.add("lereB", "backwards")
+ht.add("Blere", "mixed")
+ht.add("Rochie", "wife")
+ht.add("Avraham", "son")
+ht.add("Rivka", "daughter")
+ht.print()
